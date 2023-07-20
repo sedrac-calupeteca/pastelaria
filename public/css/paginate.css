@@ -1,0 +1,68 @@
+.float{
+    position: absolute;
+    top: 0%;
+    right: 5%;
+}
+
+.msg-empty {
+    border: 0.1rem dashed var(--bs-dark);
+    height: 150px;
+    color: #ccc;
+    font-size: 25px;
+}
+
+.msg-empty.min{
+    height: 90%;
+    font-size: 18px;
+}
+
+.msg-empty, tbody .btn, thead th div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+thead th div, tbody .btn{
+    gap: 0.2rem;
+}
+
+#pag{
+    font-size: 10pt;
+    padding-top: 0.3rem;
+}
+
+#pag nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: max-content;
+}
+
+#pag p.text-sm.text-gray-700.leading-5{
+    display: none;
+}
+
+#pag svg{
+    width: 30px;
+    height: 30px;
+}
+
+#pag p.text-sm{
+    padding-top: 10pt;
+}
+
+#pag .flex.justify-between.flex-1{
+    display: none;
+}
+
+.g-1{
+    gap: 0.5rem;
+}
+
+.enfase-modal:hover{
+    cursor: pointer;
+    color: var(--bs-primary);
+    font-weight: bolder;
+}

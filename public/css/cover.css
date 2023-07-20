@@ -1,0 +1,73 @@
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+
+/*
+ * Base structure
+ */
+
+body {
+  height: 100vh !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background: url('../img/bg.jpg') no-repeat;
+}
+
+.fwb{
+    font-weight: bolder;
+}
+
+.bg{
+    background: url('../img/bg.jpg') no-repeat;
+    padding: 0.5rem;
+}
+
+.t-j{
+    text-align: justify;
+}
+
+.cover-container {
+  max-width: 80em;
+  color: black;
+}
+
+.float-right{
+    position: absolute;
+    right: 1rem;
+}
+
+.h-img{
+    max-height: 20em;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.bg-transp{
+    background: rgba(0, 0, 0, .3);
+    padding: 0.5rem;
+}
+
+.text-justify{
+    text-align: justify;
+}
+
+.text-left{
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
