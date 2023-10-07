@@ -16,6 +16,11 @@
         <i class="fas fa-user-plus"></i>
         <span>adicionar</span>
     </button>
+    <button class="btn btn-outline-success rounded" id="btn-search-user" data-bs-toggle="modal" data-bs-target="#modalUserSearch"
+        url="#" method="POST">
+        <i class="fas fa-search"></i>
+        <span>procurar</span>
+    </button>
 @endsection
 @php $perfil = isset($panel) ? $panel : ""; @endphp
 @section('thead')
@@ -42,18 +47,21 @@
         <th>
             <div><i class="fas fa-list-ol"></i><span>Frequência compra</span></div>
         </th>
+        <th>
+            <div><i class="fas fa-money-bill"></i><span>Loja</span></div>
+        </th>
     @endif
     <th colspan="2">
         <div><i class="fas fa-tools"></i><span>Acções</span></div>
     </th>
 @endsection
 @section('tbody')
-    @foreach ($users as $user)
-        <tr style="align-items: center;" >
+    @foreach ($users as $person)
+        <tr style="align-items: center;">
             <td class="text-center">
-                @if ($user->image)
-                    <a href="{{ url("storage/{$user->image}") }}">
-                        <img src="{{ url("storage/{$user->image}") }}" alt="foto perfil" class="rounded-circle"
+                @if ($person->image)
+                    <a href="{{ url("storage/{$person->image}") }}">
+                        <img src="{{ url("storage/{$person->image}") }}" alt="foto perfil" class="rounded-circle"
                             style="width: 40px; height: 40px;">
                     </a>
                 @else
@@ -62,36 +70,44 @@
                             style="width: 35px; height: 35px;">
                     </a>
                     <br />
-                    <button class="text-primary bg-none btn-file d-flex gap-1 align-items-center" data-bs-toggle="modal" data-bs-target="#modalFile"
-                        url="{{ route('account.photo', $user->id) }}" method="PUT">
+                    <button class="text-primary bg-none btn-file d-flex gap-1 align-items-center" data-bs-toggle="modal"
+                        data-bs-target="#modalFile" url="{{ route('account.photo', $person->id) }}" method="PUT">
                         <i class="fas fa-plus"></i>
                         <span>adicionar</span>
                     </button>
                 @endif
             </td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td data-vd="{{ $user->gender }}">
-                {{ $user->gender }}
+            <td>{{ $person->name }}</td>
+            <td>{{ $person->email }}</td>
+            <td data-vd="{{ $person->gender }}">
+                {{ $person->gender }}
             </td>
-            <td>{{ $user->phone }}</td>
+            <td>{{ $person->phone }}</td>
             @if ($perfil == 'funcionarios')
-                <td data-vd={{ $user->funcionario->categoria }}>
-                    {{ $user->funcionario->categoria }}
+                <td data-vd={{ $person->funcionario->categoria }}>
+                    {{ $person->funcionario->categoria }}
                 </td>
             @elseif ($perfil == 'clientes')
-                <td>{{ $user->cliente->frequencia_compra }}</td>
+                <td>{{ $person->cliente->frequencia_compra }}</td>
+                <td>
+                    <a href="{{ route('loja.auth.user',$person->id) }}" class="text-primary rounded btn-sm btn-user-tr d-flex gap-1 align-items-center">
+                        <i class="fas fa-plus"></i>
+                        <span>Loja</span>
+                    </a>
+                </td>
             @endif
             <td>
-                <a href="#" class="text-warning rounded btn-sm btn-user-tr d-flex gap-1 align-items-center" data-bs-toggle="modal"
-                    data-bs-target="#modalUser" url="{{ route($panel . '.update', $user->id) }}" method="PUT">
+                <a href="#" class="text-warning rounded btn-sm btn-user-tr d-flex gap-1 align-items-center"
+                    data-bs-toggle="modal" data-bs-target="#modalUser" url="{{ route($panel . '.update', $person->id) }}"
+                    method="PUT">
                     <i class="fas fa-user-edit"></i>
                     <span>editar</span>
                 </a>
             </td>
             <td>
-                <a href="#" class="text-danger rounded btn-sm btn-user-del d-flex gap-1 align-items-center" data-bs-toggle="modal"
-                    data-bs-target="#modalUser" url="{{ route($panel . '.destroy', $user->id) }}" method="DELETE">
+                <a href="#" class="text-danger rounded btn-sm btn-user-del d-flex gap-1 align-items-center"
+                    data-bs-toggle="modal" data-bs-target="#modalUser" url="{{ route($panel . '.destroy', $person->id) }}"
+                    method="DELETE">
                     <i class="fas fa-user-times"></i>
                     <span>eliminar</span>
                 </a>
@@ -102,6 +118,10 @@
 @section('modal')
     @include('components.modal.user', ['type' => $panel])
     @include('components.modal.fileupload')
+    @include('components.modal.search.user',[
+        'route' => route($panel . '.index'),
+        'parmas' => ['name' => 'Nome','email' => 'Email','phone' => 'Telefone','gender' => 'Gênero',]
+    ])
 @endsection
 @section('script')
     @parent

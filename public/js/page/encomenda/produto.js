@@ -8,7 +8,7 @@ const btnCadastra = document.querySelector("#btn-cadastra-pro");
 
 function createFormSearch() {
     return `<div class="p-2 border-bottom" id="panel-search">
-            <input class="form-control rounded" placeholder="Digita o nome do produto" name="produto" id="produto_search" onblur="searchProduto()">
+            <input class="form-control rounded" placeholder="Digita o nome do produto" name="produto" id="produto_search" onkeyup="searchProduto()">
         </div>`;
 }
 

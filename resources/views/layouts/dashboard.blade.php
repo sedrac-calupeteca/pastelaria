@@ -25,22 +25,22 @@
                     <span>Conta</span>
                 </a>
                 @isset(Auth::user()->funcionario->id)
-                <a href="{{ route('funcionarios.index') }}"
-                    class="@if (isset($panel) && $panel == 'funcionarios') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
-                    <i class="fas fa-users-cog"></i>
-                    <span>Funcionarios</span>
-                </a>
-                <a href="{{ route('clientes.index') }}"
-                    class="@if (isset($panel) && $panel == 'clientes') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
-                    <i class="fas fa-users"></i>
-                    <span>Clientes</span>
-                </a>
+                    <a href="{{ route('funcionarios.index') }}"
+                        class="@if (isset($panel) && $panel == 'funcionarios') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Funcionarios</span>
+                    </a>
+                    <a href="{{ route('clientes.index') }}"
+                        class="@if (isset($panel) && $panel == 'clientes') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
+                        <i class="fas fa-users"></i>
+                        <span>Clientes</span>
+                    </a>
+                    <a href="{{ route('produtos.index') }}"
+                        class="@if (isset($panel) && $panel == 'produtos') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                        <span>Produto</span>
+                    </a>
                 @endisset
-                <a href="{{ route('produtos.index') }}"
-                    class="@if (isset($panel) && $panel == 'produtos') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                    <span>Produto</span>
-                </a>
                 <a href="{{ route('compras.index') }}"
                     class="@if (isset($panel) && $panel == 'compras') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
                     <i class="fas fa-money-bill-wave"></i>
@@ -51,11 +51,13 @@
                     <i class="fas fa-surprise"></i>
                     <span>Encomenda</span>
                 </a>
-                <a href="{{ route('loja.auth') }}"
-                    class="@if (isset($panel) && $panel == 'loja') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span>Loja</span>
-                </a>
+                @isset(Auth::user()->cliente->id)
+                    <a href="{{ route('loja.auth') }}"
+                        class="@if (isset($panel) && $panel == 'loja') list-group-item-action @else list-group-item @endif p-3 bg-primary text-white">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span>Loja</span>
+                    </a>
+                @endisset
             </div>
             <div class="div-logout">
 

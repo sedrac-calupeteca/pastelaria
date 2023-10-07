@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     ClienteController,
     EncomendaController,
     FuncionarioController,
+    ProdutoCompraController,
     ProdutoEncomendaController
 };
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,9 @@ Route::get('loja/public',[LojaController::class,'public'])->name('loja.public');
 Route::get('loja/produto',[LojaController::class,'json_produto'])->name('loja.produtos.json');
 
 Route::middleware(['auth'])->group(function(){
+
+    Route::get('compra/{id}/produtos',[ProdutoCompraController::class,'json_produto'])->name('compra.produtos.json');
+
     Route::resource('funcionarios',FuncionarioController::class);
     Route::resource('encomendas',EncomendaController::class);
     Route::resource('clientes',ClienteController::class);
@@ -57,7 +61,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/produto/encomenda/{id}/list', [ProdutoEncomendaController::class, 'produto_list_json']);
 
     Route::get('loja/auth',[LojaController::class,'auth'])->name('loja.auth');
+    Route::get('loja/{id}/auth',[LojaController::class,'auth_user'])->name('loja.auth.user');
 
     Route::post('loja/encomenda',[LojaController::class,'encomenda'])->name('loja.encomenda');
     Route::post('loja/compra',[LojaController::class,'compra'])->name('loja.compra');
+
 });

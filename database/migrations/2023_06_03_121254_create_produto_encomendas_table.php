@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();
             $table->integer('quantidade_produto')->unsigned()->default(1);
+            $table->double('preco')->unsigned()->default(0);
+            $table->double('total')->unsigned()->default(0);
             $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
             $table->foreignId('encomenda_id')->constrained('encomendas')->onDelete('cascade');
             $table->timestamps();

@@ -11,7 +11,8 @@
             @include('components.import.encomenda',[
                 'rounded' => true,
                 'userCliente' => $userCliente ?? null,
-                'joinProduto' => $joinProduto ?? false
+                'joinProduto' => $joinProduto ?? false,
+                'show_comprovativo' => true,
             ])
         </div>
         <div class="modal-footer">

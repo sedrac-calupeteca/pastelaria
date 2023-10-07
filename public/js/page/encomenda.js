@@ -17,8 +17,8 @@
         let column = row.children;
         selectChange("tipo_encomenda",column[1].dataset.vd, action);
         let userDatas = [
-            {name:"tempo_entrega", value: column[2].innerHTML, readonly: false},
-            {name:"local_entrega",value: column[3].innerHTML, readonly: false}
+            {name:"tempo_entrega", value: column[3].innerHTML, readonly: false},
+            {name:"local_entrega",value: column[4].innerHTML, readonly: false}
         ];
         userDatas.forEach(obj =>{
             let inptObj = doc.querySelector(`[name='${obj.name}']`);

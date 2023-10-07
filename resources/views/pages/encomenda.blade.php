@@ -25,6 +25,9 @@
         <div><i class="fa fa-shopping-bag"></i><span>Tipo</span></div>
     </th>
     <th>
+        <div><i class="fas fa-file"></i><span>Comprovativa</span></div>
+    </th>
+    <th>
         <div><i class="fas fa-clock"></i><span>Tempo(Entrega)</span></div>
     </th>
     <th>
@@ -42,6 +45,14 @@
         <tr>
             <td cliente_id="{{ $encomenda->cliente_id }}" email="{{ $encomenda->cliente->user->email }}">{{ $encomenda->cliente->user->name }}</td>
             <td data-vd="{{ $encomenda->tipo_encomenda }}">{{ $encomenda->tipo_encomenda }}</td>
+            <td>
+                @if ($encomenda->file)
+                    <a href="{{ url("storage/{$encomenda->file}") }}">
+                        <i class="fas fa-eye"></i>
+                        <span>visualizar</span>
+                    </a>
+                @endif
+            </td>
             <td>{{ $encomenda->tempo_entrega }}</td>
             <td>{{ $encomenda->local_entrega }}</td>
             <td>

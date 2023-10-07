@@ -1,24 +1,4 @@
-@if (isset($userCliente->cliente->id))
-    <input type="hidden" name="cliente_id" value="{{ $userCliente->cliente->id }}">
-@endif
-<div class="row mt-1 pb-3">
-    <div class="col-md-12">
-        @include('components.input', [
-            'label' => 'Digata o nome do cliente',
-            'icon' => 'fas fa-search',
-            'type' => 'search',
-            'name' => 'name_cliente',
-            'placeholder' => 'Digita o nome do cliente para a pesquisa',
-            'rounded' => $rounded ?? false,
-            'inline' => $inline ?? false,
-            'disabled' => $disabled ?? isset($userCliente),
-            'value' => $userCliente->name ?? null,
-        ])
-    </div>
-    <div class="col-md-12" id="col-cliente"></div>
-</div>
-<hr />
-<div class="row mt-1 pb-3">
+<div class="row mt-3 pb-3">
     <div class="col-md-6">
         @php use App\Utils\EncomendaUtil; @endphp
         @include('components.select', [
@@ -63,49 +43,20 @@
             'disabled' => $disabled ?? false,
         ])
     </div>
-</div>
-@if (isset($joinProduto) && $joinProduto)
-    <hr>
-    <input type="hidden" name="produto_id" id="produto_encomenda_id"/>
-    <div class="row mt-1 pb-3">
+    @isset($show_comprovativo)
         <div class="col-md-6">
             @include('components.input', [
-                'label' => 'Produto:',
-                'icon' => 'fa fa-shopping-bag',
-                'type' => 'text',
-                'name' => 'produto_name',
-                'placeholder' => '',
-                'rounded' => $rounded ?? false,
-                'inline' => $inline ?? false,
-                'disabled' => true,
-            ])
-        </div>
-        <div class="col-md-6">
-            @include('components.input', [
-                'label' => 'Preço:',
-                'icon' => 'fa fa-money-bill',
-                'type' => 'text',
-                'name' => 'produto_preco',
-                'placeholder' => '',
-                'rounded' => $rounded ?? false,
-                'inline' => $inline ?? false,
-                'disabled' => true,
-            ])
-        </div>
-        <div class="col-md-6">
-            @include('components.input', [
-                'label' => 'Quanridade:',
-                'icon' => 'fas fa-sort-numeric-up',
-                'type' => 'number',
-                'name' => 'quantidade_produto',
-                'placeholder' => 'Digita a quantidade',
+                'label' => 'Conprovativo:',
+                'icon' => 'fas fa-file',
+                'type' => 'file',
+                'name' => 'file',
+                'placeholder' => 'Digita o endereço de entrega',
                 'require' => true,
                 'value' => $encomenda->local_entrega ?? '',
                 'rounded' => $rounded ?? false,
                 'inline' => $inline ?? false,
                 'disabled' => $disabled ?? false,
-                'min' => 1
             ])
         </div>
-    </div>
-@endif
+    @endisset
+</div>

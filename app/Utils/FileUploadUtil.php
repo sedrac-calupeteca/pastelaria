@@ -22,17 +22,17 @@ class FileUploadUtil{
     }
 
     public static function uploadClienteCompra($request, $compra, &$data){
-        if ($request->hasFile('file_compra')) {
+        if ($request->hasFile('file')) {
             if (isset($compra->file)) {
                 $existingFilePath = Storage::disk('public')->exists($compra->file);
                 if ($existingFilePath)
                     Storage::disk('public')->delete($compra->file);
             }
-            $file = $request->file('file_compra');
+            $file = $request->file('file');
             $fileExtension = $file->getClientOriginalExtension();
             $fileName = uniqid() . '.' . $fileExtension;
             $filePath = $file->storeAs('comprovativo', $fileName, 'public');
-            $data['file'] = $filePath;     
+            $data['file'] = $filePath;
         }
     }
 

@@ -40,12 +40,12 @@
     @endisset
 @endsection
 @section('tbody')
-    @foreach ($produtos as $produto)
+    @foreach ($produtos as $item)
         <tr>
             <td class="text-center">
-                @if ($produto->image)
-                    <a href="{{ url("storage/{$produto->image}") }}">
-                        <img src="{{ url("storage/{$produto->image}") }}" alt="foto perfil" class="rounded-circle"
+                @if ($item->image)
+                    <a href="{{ url("storage/{$item->image}") }}">
+                        <img src="{{ url("storage/{$item->image}") }}" alt="foto perfil" class="rounded-circle"
                             style="width: 40px; height: 40px;">
                     </a>
                 @else
@@ -55,28 +55,28 @@
                     </a>
                     <br />
                     <button class="text-primary bg-none btn-file d-flex gap-1 align-items-center" data-bs-toggle="modal" data-bs-target="#modalFile"
-                        url="{{ route('produtos.photo', $produto->id) }}" method="PUT">
+                        url="{{ route('produtos.photo', $item->id) }}" method="PUT">
                         <i class="fas fa-plus"></i>
                         <span>adicionar</span>
                     </button>
                 @endif
             </td>
-            <td>{{ $produto->nome }}</td>
-            <td data-vd="{{ $produto->categoria }}">{{ $produto->categoria }}</td>
-            <td>{{ $produto->preco }}</td>
-            <td>{{ $produto->quantidade_stock }}</td>
-            <td>{{ $produto->descricao }}</td>
+            <td>{{ $item->nome }}</td>
+            <td data-vd="{{ $item->categoria }}">{{ $item->categoria }}</td>
+            <td>{{ $item->preco }}</td>
+            <td>{{ $item->quantidade_stock }}</td>
+            <td>{{ $item->descricao }}</td>
             @isset(Auth::user()->funcionario->id)
             <td>
                 <a href="#" class="text-warning rounded btn-sm btn-user-tr d-flex gap-1 align-items-center" data-bs-toggle="modal"
-                    data-bs-target="#modalProduto" url="{{ route($panel . '.update', $produto->id) }}" method="PUT">
+                    data-bs-target="#modalProduto" url="{{ route($panel . '.update', $item->id) }}" method="PUT">
                     <i class="fas fa-user-edit"></i>
                     <span>editar</span>
                 </a>
             </td>
             <td>
                 <a href="#" class="text-danger rounded btn-sm btn-user-del d-flex gap-1 align-items-center" data-bs-toggle="modal"
-                    data-bs-target="#modalProduto" url="{{ route($panel . '.destroy', $produto->id) }}" method="DELETE">
+                    data-bs-target="#modalProduto" url="{{ route($panel . '.destroy', $item->id) }}" method="DELETE">
                     <i class="fas fa-user-times"></i>
                     <span>eliminar</span>
                 </a>

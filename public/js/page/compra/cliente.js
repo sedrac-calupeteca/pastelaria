@@ -9,13 +9,14 @@
         return `<div class="msg-empty mt-4 min">Nenhum cliente com este nome foi encontrado.</div>`;
     }
 
-    searchCliente.addEventListener("blur", function (e) {
-        let html = "";
-        fetch(`${urlClinte.value}?search=${searchCliente.value}`)
-            .then((resp) => resp.json())
-            .then((resp) => {
-                resp.forEach((element, index) => {
-                    html += `
+    if (searchCliente) {
+        searchCliente.addEventListener("blur", function (e) {
+            let html = "";
+            fetch(`${urlClinte.value}?search=${searchCliente.value}`)
+                .then((resp) => resp.json())
+                .then((resp) => {
+                    resp.forEach((element, index) => {
+                        html += `
                 <tr class="text-center">
                     <td>
                         <input type="radio" id="sel_${index}" name="cliente_id"  class="form-check-input" value="${element.cliente_id}">
@@ -24,11 +25,12 @@
                     <td>${element.email}</td>
                 </tr>
                 `;
+                    });
+                    colCliente.innerHTML =
+                        html != "" ? buildTableCliente(html) : notRegister();
                 });
-                colCliente.innerHTML =
-                    html != "" ? buildTableCliente(html) : notRegister();
-            });
-    });
+        });
+    }
 })(document);
 
 

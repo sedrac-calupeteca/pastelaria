@@ -1,3 +1,12 @@
+.space{
+    position: absolute !important;
+    right: 0%;
+}
+
+.action-en{
+    cursor: pointer;
+}
+
 #wrapper {
     overflow-x: hidden;
   }

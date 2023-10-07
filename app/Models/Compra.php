@@ -11,12 +11,9 @@ class Compra extends Model
 
     protected $fillable = [
         'id',
-        'quantidade_compra',
-        'valor_compra',
         'cliente_id',
-        'produto_id',
-        'troco',
         'file',
+        'total',
         'created_by',
         'updated_by'
     ];
@@ -25,8 +22,8 @@ class Compra extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    public function produto(){
-        return $this->belongsTo(Produto::class);
+    public function produtos(){
+        return $this->belongsToMany(Produto::class);
     }
 
 }

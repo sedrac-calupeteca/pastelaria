@@ -22,7 +22,7 @@ class Produto extends Model
     ];
 
     public function compras(){
-        return $this->hasMany(Compra::class);
+        return $this->belongsToMany(Compra::class);
     }
 
     public function encomendas(){

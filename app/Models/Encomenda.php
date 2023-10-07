@@ -15,6 +15,7 @@ class Encomenda extends Model
         'tempo_entrega',
         'local_entrega',
         'foi_comprado',
+        'file',
         'cliente_id',
         'created_by',
         'updated_by'

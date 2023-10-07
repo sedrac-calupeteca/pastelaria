@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('tipo_encomenda',EncomendaUtil::keysTiposEncomendas());
             $table->timestamp('tempo_entrega');
             $table->string('local_entrega');
+            $table->string('file')->nullable();
             $table->boolean('foi_comprado')->default(false);
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();

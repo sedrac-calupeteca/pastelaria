@@ -15,16 +15,18 @@ use function PHPUnit\Framework\returnSelf;
 
 class ClienteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if(!isset(Auth::user()->funcionario->id)){
             toastr()->warning("Permissáo negada", "Aviso");
             return redirect()->back();
         }
         $panel = "clientes";
-        $users = User::join('clientes', 'user_id', 'users.id')->orderBy('users.id', 'DESC')
-            ->select('users.*')
-            ->paginate();
+        $users = User::join('clientes', 'user_id', 'users.id')->orderBy('users.id', 'DESC')->select('users.*');
+        if(isset($request->chave, $request->valor)){
+            $users = $users->where($request->chave,'like',"%{$request->valor}%");
+        }
+        $users = $users->paginate();
         return view('pages.user', compact('users', 'panel'));
     }
 
