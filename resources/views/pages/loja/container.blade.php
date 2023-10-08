@@ -4,21 +4,31 @@
 <div class="container container-lg bg-white position-relative rounded p-2 m-2 m-auto w-100"
     style="margin-top: 2rem !important;">
     <div class="h5 mb-2 d-flex w-100">
-        <div>
-            <span>Cliente: </span>
-            <span>{{ $cliente->user->name }}</span>
-        </div>
-        <div class="d-flex space">
-            <div class="action-en compraAction" data-bs-toggle="modal" data-bs-target="#modaCompraProduto">
-                compras(<span id="compraQtd">0</span>)
+        @isset($cliente->id)
+            <div>
+                <span>Cliente: </span>
+                <span>{{ $cliente->user->name }}</span>
             </div>
-            <div class="ml-1"> | </div>
-            <div class="ml-1 action-en encomendaAction" data-bs-toggle="modal" data-bs-target="#modaEncomendaProduto">
-                encomendas(<span id="encomendaQtd">0</span>)
+            <div class="d-flex space">
+                <div class="action-en compraAction" data-bs-toggle="modal" data-bs-target="#modaCompraProduto">
+                    compras(<span id="compraQtd">0</span>)
+                </div>
+                <div class="ml-1"> | </div>
+                <div class="ml-1 action-en encomendaAction" data-bs-toggle="modal" data-bs-target="#modaEncomendaProduto">
+                    encomendas(<span id="encomendaQtd">0</span>)
+                </div>
             </div>
-        </div>
+        @endisset
     </div>
     <div>
+        @if (!isset($cliente->id))
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            <strong>Faça autenticação ou cadastramento!</strong> é necessário que faças um desses processos, para poder realizar.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
         <form action="{{ $route }}" class="d-flex gap-1">
             <input class="form-control rounded" type="search" name="search" id=""
                 placeholder="Digita o produto a procura" required />
@@ -54,11 +64,15 @@
                         </div>
                         <div class="card-text">{{ $produto->descricao }}</div>
                         <div>
-                            <button class="btn btn-info btn-block rounded action-encomenda produtoEncomendaBtn{{ $produto->id }}" produto="{{ $produto->id }}">
+                            <button
+                                class="btn btn-info btn-block rounded action-encomenda produtoEncomendaBtn{{ $produto->id }}"
+                                produto="{{ $produto->id }}">
                                 <i class="fas fa-surprise"></i>
                                 <span>Encomenda</span>
                             </button>
-                            <button class="btn btn-warning btn-block rounded action-produto produtoCompraBtn{{ $produto->id }}" produto="{{ $produto->id }}">
+                            <button
+                                class="btn btn-warning btn-block rounded action-produto produtoCompraBtn{{ $produto->id }}"
+                                produto="{{ $produto->id }}">
                                 <i class="fas fa-money-bill-wave"></i>
                                 <span>Compra</span>
                             </button>
@@ -80,7 +94,6 @@
 </div>
 
 @if ($isAuth)
-
     <div id="user-key">{{ $user->id }}</div>
 
     @include('components.modal.loja', [
@@ -102,7 +115,7 @@
         'cliente' => $cliente,
         'title' => 'Compras',
         'panelPagar' => 'totalPagarCompra',
-        'btnId' => 'btnCompra'
+        'btnId' => 'btnCompra',
     ])
 
     <script src="{{ asset('js/page/loja/encomenda.js') }}"></script>

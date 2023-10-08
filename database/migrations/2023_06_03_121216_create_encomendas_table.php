@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('local_entrega');
             $table->string('file')->nullable();
             $table->boolean('foi_comprado')->default(false);
+            $table->boolean('atendido')->default(false);
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();
             $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');

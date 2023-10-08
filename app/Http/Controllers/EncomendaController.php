@@ -113,4 +113,11 @@ class EncomendaController extends Controller
         }
     }
 
+    public function atender($id){
+        $encomenda = Encomenda::find($id);
+        $encomenda->update(['atendido'=> !$encomenda->atendido]);
+        toastr()->success("Operação realizada com sucesso", "Successo");
+        return back();
+    }
+
 }

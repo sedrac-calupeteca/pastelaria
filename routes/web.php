@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     PedidoController,
     ProdutoController,
     ClienteController,
+    AvaliacaoController,
     EncomendaController,
     FuncionarioController,
     ProdutoCompraController,
@@ -39,6 +40,12 @@ Route::get('loja/produto',[LojaController::class,'json_produto'])->name('loja.pr
 Route::middleware(['auth'])->group(function(){
 
     Route::get('compra/{id}/produtos',[ProdutoCompraController::class,'json_produto'])->name('compra.produtos.json');
+    Route::get('encomenda/{id}/atender',[EncomendaController::class,'atender'])->name('encomenda.atender');
+
+    Route::delete('encomenda/{id}/avaliacao',[AvaliacaoController::class,'encomenda_delete'])->name('avaliacao.encomenda.delete');
+    Route::post('encomenda/{id}/avaliacao',[AvaliacaoController::class,'encomenda_add'])->name('avaliacao.encomenda.add');
+    Route::put('encomenda/{id}/avaliacao',[AvaliacaoController::class,'encomenda_put'])->name('avaliacao.encomenda.put');
+    Route::get('encomenda/{id}/avaliacao',[AvaliacaoController::class,'encomenda_list'])->name('avaliacao.encomenda.list');
 
     Route::resource('funcionarios',FuncionarioController::class);
     Route::resource('encomendas',EncomendaController::class);

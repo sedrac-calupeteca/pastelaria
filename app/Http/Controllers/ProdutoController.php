@@ -12,10 +12,14 @@ class ProdutoController extends Controller
 {
     private $STORE_PATH = "produtos";
 
-    public function index()
+    public function index(Request $request)
     {
         $panel = "produtos";
-        $produtos = Produto::orderBy('id', 'DESC')->paginate();
+        $produtos = Produto::orderBy('id', 'DESC');
+        if(isset($request->chave, $request->valor)){
+            $produtos = $produtos->where($request->chave,'like',"%{$request->valor}%");
+        }
+        $produtos = $produtos->paginate();
         return view('pages.produto', compact('produtos', 'panel'));
     }
 

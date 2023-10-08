@@ -16,10 +16,15 @@ class Encomenda extends Model
         'local_entrega',
         'foi_comprado',
         'file',
+        'atendido',
         'cliente_id',
         'created_by',
         'updated_by'
     ];
+
+    public function avaliacoes(){
+        return $this->hasMany(Avaliacao::class);
+    }
 
     public function cliente(){
         return $this->belongsTo(Cliente::class);

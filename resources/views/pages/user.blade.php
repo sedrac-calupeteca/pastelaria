@@ -118,7 +118,7 @@
 @section('modal')
     @include('components.modal.user', ['type' => $panel])
     @include('components.modal.fileupload')
-    @include('components.modal.search.user',[
+    @include('components.modal.search',[
         'route' => route($panel . '.index'),
         'parmas' => ['name' => 'Nome','email' => 'Email','phone' => 'Telefone','gender' => 'Gênero',]
     ])

@@ -12,6 +12,11 @@
         <i class="fas fa-user-plus"></i>
         <span>adicionar</span>
     </button>
+    <button class="btn btn-outline-success rounded" id="btn-search-user" data-bs-toggle="modal" data-bs-target="#modalUserSearch"
+        url="#" method="POST">
+        <i class="fas fa-search"></i>
+        <span>procurar</span>
+    </button>
 @endsection
 @endisset
 @section('thead')
@@ -88,6 +93,10 @@
 @section('modal')
     @include('components.modal.produto')
     @include('components.modal.fileupload')
+    @include('components.modal.search',[
+        'route' => route($panel . '.index'),
+        'parmas' => ['nome' => 'Nome','preco' => 'Preço','categoria' => 'Categoria',' descricao' => 'Descrição',]
+    ])
 @endsection
 @section('script')
     @parent
